@@ -7,6 +7,10 @@ const Bee = styled.button`
   background-color: transparent;
   border: none;
   background-position: 50%;
+
+  &:active {
+    transform: scale(1.05);
+  }
 `;
 
 export default Bee;

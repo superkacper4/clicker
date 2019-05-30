@@ -3,6 +3,7 @@ import GlobalStyle from './GlobalStyle';
 import Button from './components/Button';
 import Bee from './components/Bee';
 import Wallet from './components/Wallet';
+import Levels from './components/Levels';
 import beeImg1 from './assets/img/bee.png';
 import beeImg2 from './assets/img/bee2.png';
 import beeImg3 from './assets/img/bee3.png';
@@ -69,14 +70,17 @@ class App extends React.Component {
     const { walletValue } = this.state;
     const { beePrice } = this.state;
     return (
-      <div>
+      <Levels>
         <GlobalStyle />
         <Wallet>{walletValue}$</Wallet>
         <Bee image={image} onClick={this.addToWallet} />
-        <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}$`}</Button>
-        <Button onClick={this.boostFn}>Boost 20$</Button>
-        <Button>Next 50.000$</Button>
-      </div>
+
+        <div>
+          <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}$`}</Button>
+          <Button onClick={this.boostFn}>Boost 20$</Button>
+          <Button>Next 50.000$</Button>
+        </div>
+      </Levels>
     );
   }
 }
