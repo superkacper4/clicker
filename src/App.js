@@ -12,41 +12,47 @@ import beeImg6 from './assets/img/bee6.png';
 
 const images = [beeImg1, beeImg2, beeImg3, beeImg4, beeImg5, beeImg6];
 let i = 0;
-let beePrice = 10;
+// let beePrice = 10;
 
 class App extends React.Component {
   state = {
     image: images[i],
-    walletValue: 0,
+    walletValue: 1000,
+    beePrice: 10,
   };
 
   addToWallet = () => {
-    if (this.state.image === beeImg1) this.setState({ walletValue: this.state.walletValue + 1 });
-    else if (this.state.image === beeImg2) this.setState({ walletValue: this.state.walletValue + 2 });
-    else if (this.state.image === beeImg3) this.setState({ walletValue: this.state.walletValue + 3 });
-    else if (this.state.image === beeImg4) this.setState({ walletValue: this.state.walletValue + 4 });
-    else if (this.state.image === beeImg5) this.setState({ walletValue: this.state.walletValue + 5 });
-    else if (this.state.image === beeImg6) this.setState({ walletValue: this.state.walletValue + 6 });
+    const { image } = this.state;
+    if (image === beeImg1) this.setState(prevState => ({ walletValue: prevState.walletValue + 1 }));
+    else if (image === beeImg2) this.setState(prevState => ({ walletValue: prevState.walletValue + 2 }));
+    else if (image === beeImg3) this.setState(prevState => ({ walletValue: prevState.walletValue + 3 }));
+    else if (image === beeImg4) this.setState(prevState => ({ walletValue: prevState.walletValue + 4 }));
+    else if (image === beeImg5) this.setState(prevState => ({ walletValue: prevState.walletValue + 5 }));
+    else if (image === beeImg6) this.setState(prevState => ({ walletValue: prevState.walletValue + 6 }));
   };
 
   changeColor = () => {
-    if (i <= 4 && this.state.walletValue >= beePrice) {
-      i++;
-      this.setState({ walletValue: this.state.walletValue - beePrice });
-      beePrice += 20;
-
+    const { walletValue } = this.state;
+    const { beePrice } = this.state;
+    if (i <= 4 && walletValue >= beePrice) {
+      i += 1;
+      this.setState(prevState => ({ walletValue: prevState.walletValue - beePrice }));
+      // if (walletValue > 0) this.setState({ walletValue: 0 });
+      this.setState(prevState => ({ beePrice: prevState.beePrice + 40 }));
       this.setState({ image: images[i] });
-      console.log(i);
     }
   };
 
   render() {
+    const { image } = this.state;
+    const { walletValue } = this.state;
+    const { beePrice } = this.state;
     return (
       <div>
         <GlobalStyle />
-        <Wallet>{this.state.walletValue}zł</Wallet>
-        <Bee image={this.state.image} onClick={this.addToWallet} />
-        <Button onClick={this.changeColor}>Update {beePrice}zł</Button>
+        <Wallet>{walletValue}zł</Wallet>
+        <Bee image={image} onClick={this.addToWallet} />
+        <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}zł`}</Button>
         <Button>Boost</Button>
         <Button>Next</Button>
       </div>
