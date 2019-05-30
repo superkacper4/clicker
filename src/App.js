@@ -19,16 +19,27 @@ class App extends React.Component {
     image: images[i],
     walletValue: 1000,
     beePrice: 10,
+    boost: false,
   };
 
   addToWallet = () => {
     const { image } = this.state;
-    if (image === beeImg1) this.setState(prevState => ({ walletValue: prevState.walletValue + 1 }));
-    else if (image === beeImg2) this.setState(prevState => ({ walletValue: prevState.walletValue + 2 }));
-    else if (image === beeImg3) this.setState(prevState => ({ walletValue: prevState.walletValue + 3 }));
-    else if (image === beeImg4) this.setState(prevState => ({ walletValue: prevState.walletValue + 4 }));
-    else if (image === beeImg5) this.setState(prevState => ({ walletValue: prevState.walletValue + 5 }));
-    else if (image === beeImg6) this.setState(prevState => ({ walletValue: prevState.walletValue + 6 }));
+    const { boost } = this.state;
+    if (boost) {
+      if (image === beeImg1) this.setState(prevState => ({ walletValue: prevState.walletValue + 2 }));
+      else if (image === beeImg2) this.setState(prevState => ({ walletValue: prevState.walletValue + 4 }));
+      else if (image === beeImg3) this.setState(prevState => ({ walletValue: prevState.walletValue + 6 }));
+      else if (image === beeImg4) this.setState(prevState => ({ walletValue: prevState.walletValue + 8 }));
+      else if (image === beeImg5) this.setState(prevState => ({ walletValue: prevState.walletValue + 10 }));
+      else if (image === beeImg6) this.setState(prevState => ({ walletValue: prevState.walletValue + 12 }));
+    } else if (!boost) {
+      if (image === beeImg1) this.setState(prevState => ({ walletValue: prevState.walletValue + 1 }));
+      else if (image === beeImg2) this.setState(prevState => ({ walletValue: prevState.walletValue + 2 }));
+      else if (image === beeImg3) this.setState(prevState => ({ walletValue: prevState.walletValue + 3 }));
+      else if (image === beeImg4) this.setState(prevState => ({ walletValue: prevState.walletValue + 4 }));
+      else if (image === beeImg5) this.setState(prevState => ({ walletValue: prevState.walletValue + 5 }));
+      else if (image === beeImg6) this.setState(prevState => ({ walletValue: prevState.walletValue + 6 }));
+    }
   };
 
   changeColor = () => {
@@ -37,9 +48,19 @@ class App extends React.Component {
     if (i <= 4 && walletValue >= beePrice) {
       i += 1;
       this.setState(prevState => ({ walletValue: prevState.walletValue - beePrice }));
-      // if (walletValue > 0) this.setState({ walletValue: 0 });
       this.setState(prevState => ({ beePrice: prevState.beePrice + 40 }));
       this.setState({ image: images[i] });
+    }
+  };
+
+  boostFn = () => {
+    const { walletValue } = this.state;
+    if (walletValue >= 20) {
+      this.setState(prevState => ({ walletValue: prevState.walletValue - 20 }));
+      this.setState({ boost: true });
+      setTimeout(() => {
+        this.setState({ boost: false });
+      }, 10000);
     }
   };
 
@@ -50,11 +71,11 @@ class App extends React.Component {
     return (
       <div>
         <GlobalStyle />
-        <Wallet>{walletValue}zł</Wallet>
+        <Wallet>{walletValue}$</Wallet>
         <Bee image={image} onClick={this.addToWallet} />
-        <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}zł`}</Button>
-        <Button>Boost</Button>
-        <Button>Next</Button>
+        <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}$`}</Button>
+        <Button onClick={this.boostFn}>Boost 20$</Button>
+        <Button>Next 50.000$</Button>
       </div>
     );
   }
