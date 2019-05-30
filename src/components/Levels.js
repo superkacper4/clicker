@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Levels = styled.div`
-  background-color: #999888;
+  background-color: ${props => props.level || '#000'};
   height: 100vh;
   width: 100%;
   margin: 0;

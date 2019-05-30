@@ -13,6 +13,7 @@ import beeImg6 from './assets/img/bee6.png';
 
 const images = [beeImg1, beeImg2, beeImg3, beeImg4, beeImg5, beeImg6];
 let i = 0;
+// const level = 'blue';
 // let beePrice = 10;
 
 class App extends React.Component {
@@ -21,11 +22,11 @@ class App extends React.Component {
     walletValue: 1000,
     beePrice: 10,
     boost: false,
+    level: '#a06d6d',
   };
 
   addToWallet = () => {
-    const { image } = this.state;
-    const { boost } = this.state;
+    const { image, boost } = this.state;
     if (boost) {
       if (image === beeImg1) this.setState(prevState => ({ walletValue: prevState.walletValue + 2 }));
       else if (image === beeImg2) this.setState(prevState => ({ walletValue: prevState.walletValue + 4 }));
@@ -44,8 +45,7 @@ class App extends React.Component {
   };
 
   changeColor = () => {
-    const { walletValue } = this.state;
-    const { beePrice } = this.state;
+    const { walletValue, beePrice } = this.state;
     if (i <= 4 && walletValue >= beePrice) {
       i += 1;
       this.setState(prevState => ({ walletValue: prevState.walletValue - beePrice }));
@@ -65,12 +65,15 @@ class App extends React.Component {
     }
   };
 
+  nextLvlFn = () => {
+    this.setState({ level: '#243747' });
+    // level = false;
+  };
+
   render() {
-    const { image } = this.state;
-    const { walletValue } = this.state;
-    const { beePrice } = this.state;
+    const { image, walletValue, beePrice, level } = this.state;
     return (
-      <Levels>
+      <Levels level={level}>
         <GlobalStyle />
         <Wallet>{walletValue}$</Wallet>
         <Bee image={image} onClick={this.addToWallet} />
@@ -78,7 +81,7 @@ class App extends React.Component {
         <div>
           <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}$`}</Button>
           <Button onClick={this.boostFn}>Boost 20$</Button>
-          <Button>Next 50.000$</Button>
+          <Button onClick={this.nextLvlFn}>Next 50.000$</Button>
         </div>
       </Levels>
     );

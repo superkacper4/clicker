@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Bee = styled.button`
-  height: 372px;
-  width: 416px;
+  height: 356px;
+  width: 400px;
   background-image: url(${({ image }) => image});
   background-color: transparent;
   border: none;
