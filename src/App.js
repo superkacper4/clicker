@@ -19,8 +19,8 @@ let i = 0;
 class App extends React.Component {
   state = {
     image: images[i],
-    walletValue: 1000,
-    beePrice: 10,
+    walletValue: 21000,
+    beePrice: 30,
     boost: false,
     level: '#a06d6d',
   };
@@ -49,7 +49,7 @@ class App extends React.Component {
     if (i <= 4 && walletValue >= beePrice) {
       i += 1;
       this.setState(prevState => ({ walletValue: prevState.walletValue - beePrice }));
-      this.setState(prevState => ({ beePrice: prevState.beePrice + 40 }));
+      this.setState(prevState => ({ beePrice: prevState.beePrice + 100 }));
       this.setState({ image: images[i] });
     }
   };
@@ -66,7 +66,16 @@ class App extends React.Component {
   };
 
   nextLvlFn = () => {
-    this.setState({ level: '#243747' });
+    const { walletValue } = this.state;
+    if (walletValue >= 20000) {
+      this.setState({
+        level: '#243747',
+        walletValue: 0,
+        image: images[0],
+        beePrice: 60,
+      });
+      i = 0;
+    }
     // level = false;
   };
 
@@ -81,7 +90,7 @@ class App extends React.Component {
         <div>
           <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}$`}</Button>
           <Button onClick={this.boostFn}>Boost 20$</Button>
-          <Button onClick={this.nextLvlFn}>Next 50.000$</Button>
+          <Button onClick={this.nextLvlFn}>Next 20.000$</Button>
         </div>
       </Levels>
     );
