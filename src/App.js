@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 import Button from './components/Button';
 import Bee from './components/Bee';
@@ -11,6 +12,18 @@ import beeImg4 from './assets/img/bee4.png';
 import beeImg5 from './assets/img/bee5.png';
 import beeImg6 from './assets/img/bee6.png';
 
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 575.98px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
 const images = [beeImg1, beeImg2, beeImg3, beeImg4, beeImg5, beeImg6];
 let i = 0;
 // const level = 'blue';
@@ -19,7 +32,7 @@ let i = 0;
 class App extends React.Component {
   state = {
     image: images[i],
-    walletValue: 21000,
+    walletValue: 0,
     beePrice: 30,
     boost: false,
     level: '#a06d6d',
@@ -87,11 +100,11 @@ class App extends React.Component {
         <Wallet>{walletValue}$</Wallet>
         <Bee image={image} onClick={this.addToWallet} />
 
-        <div>
+        <StyledButtonWrapper>
           <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}$`}</Button>
           <Button onClick={this.boostFn}>Boost 20$</Button>
-          <Button onClick={this.nextLvlFn}>Next 20.000$</Button>
-        </div>
+          <Button onClick={this.nextLvlFn}>Next lv 20.000$</Button>
+        </StyledButtonWrapper>
       </Levels>
     );
   }
