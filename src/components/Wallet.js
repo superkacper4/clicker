@@ -12,6 +12,11 @@ const Wallet = styled.p`
   text-align: center;
   line-height: 50px;
   border-radius: 20px;
+
+  @media (max-width: 575.98px) {
+    top: 10px;
+    right: 10px;
+  }
 `;
 
 export default Wallet;

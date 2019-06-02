@@ -24,19 +24,19 @@ const StyledButtonWrapper = styled.div`
   }
 `;
 
-const StyledTimer = styled.p`
-  display: block;
-  background-color: white;
-  width: 100px;
-  height: 50px;
-  position: absolute;
-  font-size: 2rem;
-  top: 40px;
-  left: 40px;
-  text-align: center;
-  line-height: 50px;
-  border-radius: 20px;
-`;
+// const StyledTimer = styled.p`
+//   display: block;
+//   background-color: white;
+//   width: 100px;
+//   height: 50px;
+//   position: absolute;
+//   font-size: 2rem;
+//   top: 40px;
+//   left: 40px;
+//   text-align: center;
+//   line-height: 50px;
+//   border-radius: 20px;
+// `;
 
 const images = [beeImg1, beeImg2, beeImg3, beeImg4, beeImg5, beeImg6];
 let i = 0;
@@ -49,7 +49,7 @@ class App extends React.Component {
     walletValue: 20000,
     beePrice: 30,
     boost: false,
-    boostTime: 'boost',
+    boostFilter: 'none',
     level: '#a06d6d',
   };
 
@@ -85,14 +85,12 @@ class App extends React.Component {
   boostFn = () => {
     const { walletValue } = this.state;
     if (walletValue >= 20) {
-      this.timerFn();
       this.setState(prevState => ({ walletValue: prevState.walletValue - 20 }));
-      this.setState({ boost: true });
+      this.setState({ boost: true, boostFilter: 'contrast(300%)' });
       setTimeout(() => {
-        this.setState({ boost: false, boostTime: 'gowno' });
-      }, 10 * 1000);
+        this.setState({ boost: false, boostFilter: 'none' });
+      }, 10000);
     }
-    // clearInterval(intervalId)
   };
 
   nextLvlFn = () => {
@@ -109,23 +107,22 @@ class App extends React.Component {
     // level = false;
   };
 
-  timerFn = () => {
-    const { boostTime } = this.state;
-    this.setState({ boostTime: 10 });
-    const intervalId = setInterval(() => {
-      this.setState(prevState => ({ boostTime: prevState - 1 }));
-      console.log('dziala');
-    }, 1000);
-    setTimeout(() => clearInterval(intervalId), boostTime * 1000);
-  };
+  // timerFn = () => {
+  //   const { boostTime } = this.state;
+  //   this.setState({ boostTime: 10 });
+  //   const intervalId = setInterval(() => {
+  //     this.setState(prevState => ({ boostTime: prevState - 1 }));
+  //     console.log('dziala');
+  //   }, 1000);
+  //   setTimeout(() => clearInterval(intervalId), boostTime * 1000);
+  // };
 
   render() {
-    const { image, walletValue, beePrice, level, boostTime } = this.state;
+    const { image, walletValue, beePrice, level, boostFilter } = this.state;
     return (
-      <Levels level={level}>
+      <Levels level={level} boostFilter={boostFilter}>
         <GlobalStyle />
         <Wallet>{walletValue}$</Wallet>
-        <StyledTimer>{boostTime}s</StyledTimer>
         <Bee image={image} onClick={this.addToWallet} />
 
         <StyledButtonWrapper>

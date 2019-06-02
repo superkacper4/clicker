@@ -11,6 +11,7 @@ const Levels = styled.div`
   justify-content: space-evenly;
   align-items: center;
   overflow: hidden;
+  filter: ${props => props.boostFilter || 'none'};
 `;
 
 export default Levels;
