@@ -46,11 +46,12 @@ let i = 0;
 class App extends React.Component {
   state = {
     image: images[i],
-    walletValue: 20000,
+    walletValue: 0,
     beePrice: 30,
     boost: false,
     boostFilter: 'none',
     level: '#a06d6d',
+    levelDescription: 'Next lv 20.000$',
   };
 
   addToWallet = () => {
@@ -101,10 +102,10 @@ class App extends React.Component {
         walletValue: 0,
         image: images[0],
         beePrice: 60,
+        levelDescription: 'max lv',
       });
       i = 0;
     }
-    // level = false;
   };
 
   // timerFn = () => {
@@ -118,7 +119,7 @@ class App extends React.Component {
   // };
 
   render() {
-    const { image, walletValue, beePrice, level, boostFilter } = this.state;
+    const { image, walletValue, beePrice, level, levelDescription, boostFilter } = this.state;
     return (
       <Levels level={level} boostFilter={boostFilter}>
         <GlobalStyle />
@@ -128,7 +129,7 @@ class App extends React.Component {
         <StyledButtonWrapper>
           <Button onClick={this.changeColor}>{i === 5 ? 'max lv' : `Update ${beePrice}$`}</Button>
           <Button onClick={this.boostFn}>Boost 20$</Button>
-          <Button onClick={this.nextLvlFn}>Next lv 20.000$</Button>
+          <Button onClick={this.nextLvlFn}>{levelDescription}</Button>
         </StyledButtonWrapper>
       </Levels>
     );
