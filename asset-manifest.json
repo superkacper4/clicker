@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/clicker/static/js/main.0779c7ee.chunk.js",
+    "main.js.map": "/clicker/static/js/main.0779c7ee.chunk.js.map",
+    "runtime~main.js": "/clicker/static/js/runtime~main.b35d8f1a.js",
+    "runtime~main.js.map": "/clicker/static/js/runtime~main.b35d8f1a.js.map",
+    "static/js/2.dc42bda9.chunk.js": "/clicker/static/js/2.dc42bda9.chunk.js",
+    "static/js/2.dc42bda9.chunk.js.map": "/clicker/static/js/2.dc42bda9.chunk.js.map",
+    "index.html": "/clicker/index.html",
+    "precache-manifest.f6e127cd0f3d158a156739aa8e3bc164.js": "/clicker/precache-manifest.f6e127cd0f3d158a156739aa8e3bc164.js",
+    "service-worker.js": "/clicker/service-worker.js",
+    "static/media/bee.png": "/clicker/static/media/bee.5fe641e6.png",
+    "static/media/bee2.png": "/clicker/static/media/bee2.4f4dd360.png",
+    "static/media/bee3.png": "/clicker/static/media/bee3.6fd0f376.png",
+    "static/media/bee4.png": "/clicker/static/media/bee4.3f80da53.png",
+    "static/media/bee5.png": "/clicker/static/media/bee5.7783f33c.png",
+    "static/media/bee6.png": "/clicker/static/media/bee6.cee6b503.png"
+  }
+}
